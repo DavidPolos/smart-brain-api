@@ -7,14 +7,16 @@ const signin =require ('./controllers/signin');
 const register =require ('./controllers/register');
 const profile =require ('./controllers/profile');
 const image =require ('./controllers/image');
-process.env.NODE_TSL_REJECT_UNAUTHORIZED = 0;
 
 
 const db = knex({
   client: 'pg',
   connection: {
-  	host : process.env.DATABASE_URL,
-    ssl:true,
+  	host : '127.0.0.1',
+  	user : 'postgres',
+  	port: 5432,
+  	password : 'test',
+    database: 'smart-brain'
   },
 });
 
