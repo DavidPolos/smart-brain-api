@@ -1,6 +1,6 @@
+//handles sign in 
 
-
-const handleSignin = (req,res,db,bcrypt)=>{
+const handleSignin = (req,res,db,bcrypt,session)=>{
 	const {email, password} = req.body;
 	if (!email  || !password){
 		return res.status(400).json('incorrect form submission');
@@ -10,6 +10,7 @@ const handleSignin = (req,res,db,bcrypt)=>{
 		.then(data => {
 			const isValid = bcrypt.compareSync(password,data[0].hash);
 			if (isValid){
+				req.session.email = email;
 				return db.select('*').from('users')
 					.where('email', '=', email)
 					.then(user =>{
@@ -18,10 +19,13 @@ const handleSignin = (req,res,db,bcrypt)=>{
 					.catch(err => res.status(400).json('unable to get user'))
 				}else {
 					res.status(400).json('wrong credentials');
-				}
-				
+				}	
 		})
 		.catch(err => res.status(400).json('wrong credentials'))
+
+
+
+
 }
 
 module.exports = {
