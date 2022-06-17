@@ -24,10 +24,7 @@ const db = knex({
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use(cors({
-    origin: 'https://big-brain-smart.herokuapp.com/',
-    credentials: true,
-}))
+app.use(cors())
   
 
 
