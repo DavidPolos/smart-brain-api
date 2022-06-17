@@ -36,8 +36,9 @@ const oneDay = 1000 * 60 * 60 * 24;
 app.use(session({
   secret: '8B2ABEF6E81349189910F011A7FF11FB',
   resave: false,
+  proxy: true,
   saveUninitialized: true,
-  cookie: { maxAge: oneDay, sameSite:"none",secure: false}
+  cookie: { maxAge: oneDay, sameSite:"none",secure: true}
 }))
 
 
